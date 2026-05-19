@@ -1,0 +1,273 @@
+{
+	"info": {
+		"name": "Task Management API",
+		"description": "Complete test suite for Task Management API (Flask + SQLite). Includes all CRUD endpoints, user endpoints, the relationship endpoint, and error cases.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01 - Create User (POST /users)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Toheeb\",\n  \"email\": \"toheeb@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/users",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["users"]
+				},
+				"description": "Creates a new user. Expected: 201 Created"
+			}
+		},
+		{
+			"name": "02 - Get All Users (GET /users)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/users",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["users"]
+				},
+				"description": "Returns all users. Expected: 200 OK"
+			}
+		},
+		{
+			"name": "03 - Create Task (POST /tasks)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Learn Flask\",\n  \"description\": \"Complete the tutorial\",\n  \"user_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/tasks",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["tasks"]
+				},
+				"description": "Creates a task linked to user 1. Expected: 201 Created"
+			}
+		},
+		{
+			"name": "04 - Create Second Task (POST /tasks)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Write README\",\n  \"description\": \"Document the project\",\n  \"user_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/tasks",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["tasks"]
+				},
+				"description": "Creates a second task. Expected: 201 Created"
+			}
+		},
+		{
+			"name": "05 - Get All Tasks (GET /tasks)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/tasks",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["tasks"]
+				},
+				"description": "Returns all tasks. Expected: 200 OK"
+			}
+		},
+		{
+			"name": "06 - Get One Task (GET /tasks/1)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/tasks/1",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["tasks", "1"]
+				},
+				"description": "Returns the task with ID 1. Expected: 200 OK"
+			}
+		},
+		{
+			"name": "07 - Update Task (PUT /tasks/1)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"status\": \"completed\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/tasks/1",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["tasks", "1"]
+				},
+				"description": "Updates task 1's status to completed. Expected: 200 OK"
+			}
+		},
+		{
+			"name": "08 - Get User Tasks (GET /users/1/tasks) ⭐ RELATIONSHIP",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/users/1/tasks",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["users", "1", "tasks"]
+				},
+				"description": "Returns all tasks belonging to user 1. THIS PROVES THE RELATIONSHIP WORKS. Expected: 200 OK"
+			}
+		},
+		{
+			"name": "09 - Delete Task (DELETE /tasks/2)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/tasks/2",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["tasks", "2"]
+				},
+				"description": "Deletes task 2. Expected: 200 OK"
+			}
+		},
+		{
+			"name": "10 - ERROR: Task Not Found (404)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/tasks/9999",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["tasks", "9999"]
+				},
+				"description": "Tries to fetch a non-existent task. Expected: 404 Not Found. Proves error handling."
+			}
+		},
+		{
+			"name": "11 - ERROR: Missing Title (400 Validation)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"user_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/tasks",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["tasks"]
+				},
+				"description": "Tries to create a task with no title. Expected: 400 Bad Request. Proves input validation."
+			}
+		},
+		{
+			"name": "12 - ERROR: Duplicate Email (400)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Another Person\",\n  \"email\": \"toheeb@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/users",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "5000",
+					"path": ["users"]
+				},
+				"description": "Tries to create a user with an existing email. Expected: 400 Bad Request. Proves DB constraint handling."
+			}
+		}
+	]
+}
