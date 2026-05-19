@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Task 1 — Flask
+task1_backend/tasks.db
+
+# Task 2 — File Organizer auto-generated
+task2_automation/logs/
+task2_automation/test_files/
+task2_automation/junk_folder/
+task2_automation/bad_config.json
